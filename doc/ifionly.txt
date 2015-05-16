@@ -1,0 +1,30 @@
+INTRODUCTION                                    *ifionly*
+
+An only slightly smarter |:only|
+
+USAGE                                           *ifionly-commands*
+
+                                                *:IfIOnly*
+:IfIOnly                If there are any unmodifiable splits open, close them
+                        while maintaining and modifiable ones.  If there are
+                        only modifiable splits open, just act like |:only|.
+
+MAPPINGS                                        *ifionly-mappings*
+
+                                                *ifionly-CTRL-w_O*
+|CTRL-W_O|                Same as |:IfIOnly|
+
+OPTIONS                                         *ifionly-options*
+
+                                                *'destructive_jump'*
+Default: 0
+If you are inside an unmodifiable buffer and this is set to 0, you will simply
+be taken to the first modifiable one without closing anything.
+>
+  let g:ifionly_destructive_jump = 1
+<
+
+For more information visit: https://www.github.com/sodapopcan/vim-ifionly
+
+
+ vim:tw=78:et:ft=help:norl:
