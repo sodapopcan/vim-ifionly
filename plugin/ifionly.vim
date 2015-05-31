@@ -11,7 +11,7 @@ command! -nargs=0 IfIOnly call <SID>only()
 
 nnoremap <silent> <C-W>O :call <SID>only()<CR>
 
-function! s:only()
+function! s:only() abort
   if !&modifiable
     let winnr = winnr()
     while !&modifiable
@@ -50,7 +50,7 @@ function! s:only()
   call s:buffocus(bufnr)
 endfunction
 
-function! s:buffocus(bufnr)
+function! s:buffocus(bufnr) abort
   let switchbuf_cached = &switchbuf
   set switchbuf=useopen
   exec 'sb ' . a:bufnr
