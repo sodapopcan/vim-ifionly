@@ -23,7 +23,14 @@ be taken to the first modifiable one without closing anything.
 >
   let g:ifionly_destructive_jump = 1
 <
+                                                *'filetypes'*
 
+Default: []
+A list of filetypes that ifionly will keep around when choosing which buffers
+to close.
+>
+  let g:ifionly_filetypes = ['vim-plug']
+<
 For more information visit: https://www.github.com/sodapopcan/vim-ifionly
 
 

@@ -12,9 +12,9 @@ command! -nargs=0 IfIOnly call <SID>only()
 nnoremap <silent> <C-W>O :call <SID>only()<CR>
 
 function! s:only() abort
-  if !&modifiable
+  if !s:keepbuf()
     let winnr = winnr()
-    while !&modifiable
+    while !s:keepbuf()
       wincmd w
       if winnr ==# winnr()
         return
@@ -32,7 +32,7 @@ function! s:only() abort
 
   while winnr !=# curwinnr
     wincmd w
-    if !&modifiable
+    if !s:keepbuf()
       call add(nomod_bufnrs, bufnr('%'))
     endif
     let curwinnr = winnr()
@@ -48,6 +48,10 @@ function! s:only() abort
   endif
 
   call s:buffocus(bufnr)
+endfunction
+
+function! s:keepbuf() abort
+  return &modifiable || index(get(g:, 'ifionly_filetypes', []), &ft) >= 0
 endfunction
 
 function! s:buffocus(bufnr) abort
