@@ -28,18 +28,18 @@ function! s:only() abort
   let winnr = winnr()
   let bufnr = bufnr('%')
   let curwinnr = 0
-  let nomod_bufnrs = []
+  let delete_bufnrs = []
 
   while winnr !=# curwinnr
     wincmd w
     if !s:keepbuf()
-      call add(nomod_bufnrs, bufnr('%'))
+      call add(delete_bufnrs, bufnr('%'))
     endif
     let curwinnr = winnr()
   endwhile
 
-  if len(nomod_bufnrs)
-    for i in nomod_bufnrs
+  if len(delete_bufnrs)
+    for i in delete_bufnrs
       call s:buffocus(i)
       quit
     endfor
