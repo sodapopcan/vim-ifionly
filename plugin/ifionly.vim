@@ -11,6 +11,9 @@ command! -nargs=0 IfIOnly call <SID>only()
 
 nnoremap <silent> <C-W>O :call <SID>only()<CR>
 
+let s:destructive_jump = get(g:, 'ifionly_destructive_jump', 0)
+let s:filetypes = get(g:, 'ifionly_filetypes', [])
+
 function! s:only() abort
   if !s:keepbuf()
     let winnr = winnr()
@@ -20,7 +23,7 @@ function! s:only() abort
         return
       endif
     endwhile
-    if !get(g:, 'ifionly_destructive_jump', 0)
+    if !s:destructive_jump
       return
     endif
   endif
@@ -51,7 +54,7 @@ function! s:only() abort
 endfunction
 
 function! s:keepbuf() abort
-  return &modifiable || index(get(g:, 'ifionly_filetypes', []), &ft) >= 0
+  return &modifiable || index(s:filetypes, &ft) >= 0
 endfunction
 
 function! s:buffocus(bufnr) abort
