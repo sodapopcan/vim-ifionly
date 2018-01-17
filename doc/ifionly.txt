@@ -29,7 +29,7 @@ Default: []
 A list of filetypes that ifionly will keep around when choosing which buffers
 to close.
 >
-  let g:ifionly_filetypes = ['vim-plug']
+  let g:ifionly_filetypes = ['nerdtree', 'vim-plug']
 <
 For more information visit: https://www.github.com/sodapopcan/vim-ifionly
 
