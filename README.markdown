@@ -30,7 +30,7 @@ If this sounds useful to you yet you like to have something like NERDTree open
 at all times, `g:ifionly_filetypes` can be set in your vimrc.  For example:
 
 ```viml
-g:ifionly_filetypes = ['nerdtree']
+let g:ifionly_filetypes = ['nerdtree']
 ```
 
 
