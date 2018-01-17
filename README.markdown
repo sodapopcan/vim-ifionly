@@ -24,7 +24,7 @@ side-by-side.  Sometimes I'll find myself in a position where
 [git](https://github.com/tpope/vim-fugitive) status, the quickfix window, and
 sometimes even [NERDTree](https://github.com/scrooloose/nerdtree)--(or, *ahem* the
 [twiggy](https://github.com/sodapopcan/vim-twiggy) window) are all open and
-I want to quickly get back to my default state in one of two keystokes.
+I want to quickly get back to my default state in one or two keystokes.
 
 If this sounds useful to you yet you like to have something like NERDTree open
 at all times, `g:ifionly_filetypes` can be set in your vimrc.  For example:
