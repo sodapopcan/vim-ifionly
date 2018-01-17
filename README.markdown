@@ -8,7 +8,7 @@ It's pretty simple: If there are any unmodifiable buffers open
 [`:Gstatus`](https://github.com/tpope/vim-fugitive), quickfix window, etc.), close
 them leaving any modifiable buffers alone.  If there are only modifiable splits
 open, make the current one the only one&mdash;i.e., call plain old `:only`.
-If you are in an unmofiable buffer, jump to the first modifiable one (this last
+If you are in an unmodifiable buffer, jump to the first modifiable one (this last
 point is configurable; see `:help ifionly`).
 
 
