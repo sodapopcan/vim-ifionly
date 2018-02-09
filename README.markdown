@@ -37,8 +37,8 @@ longest time, I was calling `:only` like crazy, only to have to bring back my
 split... hence If I Only&hellip;
 
 If this sounds useful to you yet you like to have something like NERDTree open
-at all times, `g:ifionly_filetypes` can be set in your vimrc.  It take a list of
-filetypes to be left alone by this plugin.  For example:
+at all times, `g:ifionly_filetypes` can be set in your vimrc.  It takes a list
+of filetypes to be left alone by this plugin.  For example:
 
 ```viml
 let g:ifionly_filetypes = ['nerdtree']
