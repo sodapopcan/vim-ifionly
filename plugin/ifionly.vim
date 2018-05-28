@@ -15,51 +15,44 @@ let s:destructive_jump = get(g:, 'ifionly_destructive_jump', 0)
 let s:filetypes = get(g:, 'ifionly_filetypes', [])
 
 function! s:only() abort
-  if !s:keepbuf()
-    let winnr = winnr()
-    while !s:keepbuf()
-      wincmd w
-      if winnr ==# winnr()
-        return
-      endif
-    endwhile
-    if !s:destructive_jump
-      return
-    endif
+  if s:will_close_win(winnr()) && !s:destructive_jump
+    exec s:get_first_modifiable_winnr()."wincmd w"
+
+    return
   endif
 
-  let winnr = winnr()
-  let bufnr = bufnr('%')
-  let curwinnr = 0
-  let delete_bufnrs = []
+  let closewinnrs = s:get_close_winnrs()
 
-  while winnr !=# curwinnr
-    wincmd w
-    if !s:keepbuf()
-      call add(delete_bufnrs, bufnr('%'))
-    endif
-    let curwinnr = winnr()
-  endwhile
-
-  if len(delete_bufnrs)
-    for i in delete_bufnrs
-      call s:buffocus(i)
-      quit
-    endfor
-  else
+  if !len(closewinnrs)
     only
   endif
 
-  call s:buffocus(bufnr)
+  while len(closewinnrs)
+    exec closewinnrs[len(closewinnrs) - 1]."quit"
+    let closewinnrs = s:get_close_winnrs()
+  endwhile
 endfunction
 
-function! s:keepbuf() abort
-  return &modifiable || index(s:filetypes, &ft) >= 0
+function! s:get_close_winnrs()
+  return filter(range(1, winnr('$')), 's:will_close_win(v:val)')
 endfunction
 
-function! s:buffocus(bufnr) abort
-  let switchbuf_cached = &switchbuf
-  set switchbuf=useopen
-  exec 'sb ' . a:bufnr
-  exec 'set switchbuf=' . switchbuf_cached
+function! s:get_first_modifiable_winnr()
+  for i in range(1, winnr('$'))
+    if !s:will_close_win(i)
+      return i
+    endif
+  endfor
+endfunction
+
+function! s:will_close_win(nr) abort
+  if index(s:filetypes, getbufvar(winbufnr(a:nr), '&ft')) >= 0
+    return 0
+  endif
+
+  if !getbufvar(winbufnr(a:nr), '&modifiable')
+    return 1
+  endif
+
+  return 0
 endfunction
