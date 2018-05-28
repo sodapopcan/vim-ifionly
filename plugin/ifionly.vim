@@ -33,11 +33,11 @@ function! s:only() abort
   endwhile
 endfunction
 
-function! s:get_close_winnrs()
+function! s:get_close_winnrs() abort
   return filter(range(1, winnr('$')), 's:will_close_win(v:val)')
 endfunction
 
-function! s:get_first_modifiable_winnr()
+function! s:get_first_modifiable_winnr() abort
   for i in range(1, winnr('$'))
     if !s:will_close_win(i)
       return i
