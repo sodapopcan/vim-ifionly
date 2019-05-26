@@ -24,7 +24,24 @@ function! s:only() abort
   let closewinnrs = s:get_close_winnrs()
 
   if !len(closewinnrs)
-    only
+    if exists('t:ifionly_session_file') && winnr('$') == 1
+      let winstate = winsaveview()
+      let bufnr = bufnr('')
+      exec "silent! source ".t:ifionly_session_file
+      call winrestview(winstate)
+      exec "b".bufnr
+      call s:cleanup()
+    else
+      let t:ifionly_session_file = tempname().'__ifionly__'.tabpagenr()
+      let current_session_options = &sessionoptions
+      let current_session = v:this_session
+      set sessionoptions-=tabpages sessionoptions-=blank sessionoptions-=options
+      exec "mksession! ".t:ifionly_session_file
+      only
+      let v:this_session = current_session
+      let &sessionoptions = current_session_options
+      autocmd! TabClosed * call s:cleanup()
+    endif
   endif
 
   while len(closewinnrs)
@@ -55,4 +72,11 @@ function! s:will_close_win(nr) abort
   endif
 
   return 0
+endfunction
+
+function! s:cleanup() abort
+  if exists('t:ifionly_session_file')
+    call delete(t:ifionly_session_file)
+    unlet t:ifionly_session_file
+  endif
 endfunction
