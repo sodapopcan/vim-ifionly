@@ -23,7 +23,12 @@ function! s:only() abort
 
   let closewinnrs = s:get_close_winnrs()
 
-  if !len(closewinnrs)
+  if len(closewinnrs)
+    while len(closewinnrs)
+      exec closewinnrs[len(closewinnrs) - 1]."quit"
+      let closewinnrs = s:get_close_winnrs()
+    endwhile
+  else
     if exists('t:ifionly_session_file') && winnr('$') == 1
       let winstate = winsaveview()
       let bufnr = bufnr('')
@@ -43,11 +48,6 @@ function! s:only() abort
       autocmd! TabClosed * call s:cleanup()
     endif
   endif
-
-  while len(closewinnrs)
-    exec closewinnrs[len(closewinnrs) - 1]."quit"
-    let closewinnrs = s:get_close_winnrs()
-  endwhile
 endfunction
 
 function! s:get_close_winnrs() abort
