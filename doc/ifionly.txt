@@ -9,6 +9,9 @@ USAGE                                           *ifionly-commands*
                         while maintaining and modifiable ones.  If there are
                         only modifiable splits open, just act like |:only|.
 
+                        Once down to one window, bring back any recently
+                        closed splits (these are forgotten on quit).
+
 MAPPINGS                                        *ifionly-mappings*
 
                                                 *ifionly-CTRL-w_O*

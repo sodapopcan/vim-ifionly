@@ -3,13 +3,18 @@ If I Only&hellip;
 
 **If I Only&hellip;** is an only slightly smarter `:only`.
 
-It's pretty simple: If there are any unmodifiable buffers open
+If there are any unmodifiable buffers open
 ([NERDTree](https://github.com/scrooloose/nerdtree),
 [`:Gstatus`](https://github.com/tpope/vim-fugitive), quickfix window, etc.),
 close them leaving any modifiable buffers alone.  If there are only modifiable
 splits open, make the current one the only one&mdash;i.e., call plain old
 `:only`.  If you are in an unmodifiable buffer, jump to the first modifiable one
 (this last point is configurable; see `:help ifionly`).
+
+If invoking `:IfIOnly` leaves one buffer, calling it again to bring back any
+windows that were closed (ie, it acts as a poor man's
+[WinZoom](https://github.com/vim-scripts/ZoomWin).  This is available until
+quitting Vim.
 
 
 Usage
