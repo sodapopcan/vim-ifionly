@@ -1,6 +1,6 @@
 " ifionly.vim - An only slightly smarter :only
 " Maintainer:   Andrew Haust <https://www.github.com/sodapopcan>
-" Version:      1.0
+" Version:      1.1
 
 if exists('g:loaded_ifionly') || &cp
   finish
