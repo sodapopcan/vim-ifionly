@@ -57,4 +57,4 @@ Like this plugin?  Please star it or vote for it on
 [vim.org](http://www.vim.org)!  Any feedback is always welcome.
 
 **If I Only&hellip;**'s namesake is [a song by Do Make Say
-Think](https://www.youtube.com/watch?v=4uFwM9Bnp_I).
+Think](https://www.youtube.com/watch?v=48jGHI26uXY).
