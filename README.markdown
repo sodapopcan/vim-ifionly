@@ -38,8 +38,8 @@ Sometimes I'll find myself in a position where the
 and sometimes even [NERDTree](https://github.com/scrooloose/nerdtree)&mdash;or,
 *ahem* [twiggy](https://github.com/sodapopcan/vim-twiggy)&mdash;are all open and
 I want to quickly get back to my default state in one or two keystokes.  For the
-longest time, I was calling `:only` like crazy, only to have to bring back my
-split... hence If I Only&hellip;
+longest time I would call `:only` on an artibrary window only to have to bring
+back the discarded split... hence If I Only&hellip;
 
 If this sounds useful to you yet you like to have something like NERDTree open
 at all times, `g:ifionly_filetypes` can be set in your vimrc.  It takes a list
